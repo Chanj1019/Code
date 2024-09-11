@@ -17,32 +17,7 @@ package ProgrammersLv3;
 //풀이 방법 이진 탐색 풀이 min과 max 정하기 min = 1초 max = (금의 양 + 은의 양 )/ 한번에 옮길 수 있는 양 X time 
 //(최악의 조건) 금 10^9 , 은 10^9 , 한번에 옮길 수 있는 양 = 1 ,time 왕복 2  
 
-// public class Solution {
-//     public long solution(int a, int b, int[] g, int[] s, int[] w, int[] t) {
-//         long answer = -1;
-//         int start = 0;
-//         long end = (long)(10^9*2 * 10^5*2);
-//         int city = g.length;
-
-//         while(start <= end){
-//             int s = 0;
-//             int g = 0;
-//             int move = 0;
-//             long mid = (start+end)/2;
-//             if(int i = 0;i <city;i++;){
-
-
-//             }
-//         }
-
-
-
-
-//         return answer;
-//     }
-// }
-
-public class Solution {
+public class ProgrammersGoldAndSilver {
     public long solution(int a, int b, int[] g, int[] s, int[] w, int[] t) {
         long answer = -1;
         long start = 0;
@@ -56,7 +31,7 @@ public class Solution {
             int move = 0;
 
             for (int i = 0; i < city; i++) { 
-                int 
+                
 
                 
             }
