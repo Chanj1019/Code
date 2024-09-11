@@ -7,7 +7,7 @@ package ProgrammersLv3;
 // 제한사항
 // 0 ≤ a, b ≤ 10^9
 // 1 ≤ g의 길이 = s의 길이 = w의 길이 = t의 길이 = 도시 개수 ≤ 105
-// 0 ≤ g[i], s[i] ≤ 109
+// 0 ≤ g[i], s[i] ≤ 10^9
 // 1 ≤ w[i] ≤ 10^2
 // 1 ≤ t[i] ≤ 10^5
 // a ≤ g의 모든 수의 합
@@ -20,19 +20,23 @@ package ProgrammersLv3;
 public class ProgrammersGoldAndSilver {
     public long solution(int a, int b, int[] g, int[] s, int[] w, int[] t) {
         long answer = -1;
-        long start = 0;
-        long end = (long)(Math.pow(10, 9) * 2 * Math.pow(10, 5) * 2);
-        int city = g.length;
+        long start = 0; //최솟값
+        long end = (long)(Math.pow(10, 9) * 2 * Math.pow(10, 5) * 2);//최댓값
+        int city = g.length; //도시 개수
 
         while (start <= end) {
-            long mid = (start + end) / 2; 
-            int totalGold = 0; 
-            int totalSilver = 0; 
-            int move = 0;
+            long mid = (start + end) / 2; //운반 시간 
+            int gold = 0; // 금 변수 초기화
+            int silver = 0; // 은 변수 초기화
+            
 
             for (int i = 0; i < city; i++) { 
-                
+                int totalGold = g[i];
+                int totalSilver = s[i];
+                int weight = w[i];
+                long time =t[i];
 
+                long count = ;
                 
             }
 
