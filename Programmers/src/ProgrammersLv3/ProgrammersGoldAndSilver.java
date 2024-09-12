@@ -23,7 +23,7 @@ public class ProgrammersGoldAndSilver {
         long start = 0; //최솟값
         long end = (long)(Math.pow(10, 9) * 2 * Math.pow(10, 5) * 2);//최댓값
         int city = g.length; //도시 개수
-
+        
         while (start <= end) {
             long mid = (start + end) / 2; //운반 시간 
             int gold = 0; // 금 변수 초기화
@@ -35,8 +35,15 @@ public class ProgrammersGoldAndSilver {
                 int totalSilver = s[i];
                 int weight = w[i];
                 long time =t[i];
+                
+                long count = mid/(time*2);
 
-                long count = ;
+                if(mid % (time*2) >=time){
+                    count++;
+                }
+                gold += Math.min(totalGold, count*weight);
+                silver += Math.min(totalGold, count*weight);
+                
                 
             }
 
