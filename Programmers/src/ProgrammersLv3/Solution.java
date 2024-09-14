@@ -1,96 +1,87 @@
 package ProgrammersLv3;
-//어느 왕국에 하나 이상의 도시들이 있습니다. 왕국의 왕은 새 도시를 짓기로 결정하였습니다. 해당 도시를 짓기 위해서는 도시를 짓는 장소에 금 a kg과 은 b kg이 전달되어야 합니다.
-// 각 도시에는 번호가 매겨져 있는데, i번 도시에는 금 g[i] kg, 은 s[i] kg, 그리고 트럭 한 대가 있습니다. i번 도시의 트럭은 오직 새 도시를 짓는 건설 장소와 i번 도시만을 왕복할
-// 수 있으며, 편도로 이동하는 데 t[i] 시간이 걸리고, 최대 w[i] kg 광물을 운반할 수 있습니다. (광물은 금과 은입니다. 즉, 금과 은을 동시에 운반할 수 있습니다.) 모든 트럭은 같은 도로를 여러 번 왕복할 수 있으며 연료는 무한대라고 가정합니다.
-// 정수 a, b와 정수 배열 g, s, w, t가 매개변수로 주어집니다. 주어진 정보를 바탕으로 각 도시의 트럭을 최적으로 운행했을 때, 새로운 도시를 건설하기 위해 금 a kg과 은 b kg을 전달할 수 있는 가장 빠른 시간을 구해 return 하도록 solution 함수를 완성해주세요.
 
-// 제한사항
-// 0 ≤ a, b ≤ 10^9
-// 1 ≤ g의 길이 = s의 길이 = w의 길이 = t의 길이 = 도시 개수 ≤ 105
-// 0 ≤ g[i], s[i] ≤ 10^9
-// 1 ≤ w[i] ≤ 10^2
-// 1 ≤ t[i] ≤ 10^5
-// a ≤ g의 모든 수의 합
-// b ≤ s의 모든 수의 합
+import java.util.Scanner;
 
-//시간을 return
-//풀이 방법 이진 탐색 풀이 min과 max 정하기 min = 1초 max = (금의 양 + 은의 양 )/ 한번에 옮길 수 있는 양 X time 
-//(최악의 조건) 금 10^9 , 은 10^9 , 한번에 옮길 수 있는 양 = 1 ,time 왕복 2  
-
-// public class ProgrammersGoldAndSilver {
-//     public long solution(int a, int b, int[] g, int[] s, int[] w, int[] t) {
-//         long answer = -1;
-//         long start = 0; //최솟값
-//         long end = (long)(Math.pow(10, 9) * 2 * Math.pow(10, 5) * 2);//최댓값
-//         int city = g.length; //도시 개수
-        
-//         while (start <= end) {
-//             long mid = (start + end) / 2; //운반 시간 
-//             int gold = 0; // 금 변수 초기화
-//             int silver = 0; // 은 변수 초기화
-            
-
-//             for (int i = 0; i < city; i++) { 
-//                 int totalGold = g[i];
-//                 int totalSilver = s[i];
-//                 int weight = w[i];
-//                 long time =t[i];
-                
-//                 long count = mid/(time*2);
-
-//                 if(mid % (time*2) >=time){
-//                     count++;
-//                 }
-//                 gold += Math.min(totalGold, count*weight);
-//                 silver += Math.min(totalSilver, count*weight);
-                
-//                 if(gold < a & silver < b){
-//                     end = mid - 1 ;
-//                     continue;
-//                 }else{
-//                     start = mid + 1;
-//                 }
-                
-//             }
-
-          
-//         }
-
-//         return answer;
-//     }
-// }
 public class Solution {
     public long solution(int a, int b, int[] g, int[] s, int[] w, int[] t) {
         long start = 0; // 최솟값
-        long end = (long)(Math.pow(10, 9) * 2 * Math.pow(10, 5) * 2); // 최댓값
+        long end = (long) (10e9 * 2 * 10e5 * 2);
+        long answer = (long) (10e9 * 2 * 10e5 * 2);
         int city = g.length; // 도시 개수
 
         while (start <= end) {
             long mid = (start + end) / 2; // 중간값 계산
             int gold = 0; // 금 변수 초기화
             int silver = 0; // 은 변수 초기화
-            
+            int mount = 0; // 운반된 양
             for (int i = 0; i < city; i++) {
-                int totalSilver = s[i];
-                int weight = w[i];
-                long time = t[i];
-                long count = mid / (time * 2);
-                
+                int totalGold = g[i]; // 현재 도시의 금
+                int totalSilver = s[i]; // 현재 도시의 은
+                int weight = w[i]; // 현재 도시의 화물 무게
+                long time = t[i]; // 현재 도시의 시간
+
+                long count = mid / (time * 2); // 이동 횟수 계산
                 if (mid % (time * 2) >= time) {
-                    count++;
+                    count++; // 남은 시간이 이동 시간 이상이면 한 번 더 이동
                 }
                 
+                // 각 도시에서 최대 수송량을 계산
+                gold += Math.min(totalGold, count * weight);
                 silver += Math.min(totalSilver, count * weight);
+                mount += Math.min(totalGold + totalSilver, count * weight);
             }
             
-            if (gold < a && silver < b) {
-                start = mid + 1; // 조건을 만족하지 않으면 증가
-                continue;
-            } else {
+            // 조건 확인: 금, 은, 총 수송량
+            if (gold >= a && silver >= b && mount >= (a + b)) {
+                answer = Math.min(mid, answer); // 최소값 업데이트
                 end = mid - 1; // 조건을 만족하면 감소
+            } else {
+                start = mid + 1; // 조건을 만족하지 않으면 증가
             }
         }
         
-        return start; // 결과 반환
+        return answer; // 결과 반환
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // 입력 받기
+        System.out.print("a: ");
+        int a = scanner.nextInt();
+        System.out.print("b: ");
+        int b = scanner.nextInt();
+        scanner.nextLine(); // 다음 줄로 이동
+
+        System.out.print("g (공백으로 구분): ");
+        int[] g = readArray(scanner);
+        System.out.print("s (공백으로 구분): ");
+        int[] s = readArray(scanner);
+        System.out.print("w (공백으로 구분): ");
+        int[] w = readArray(scanner);
+        System.out.print("t (공백으로 구분): ");
+        int[] t = readArray(scanner);
+        
+        // Solution 객체 생성 및 결과 계산
+        Solution solution = new Solution();
+        long result = solution.solution(a, b, g, s, w, t);
+        
+        // 결과 출력
+        System.out.println("결과: " + result);
+        
+        scanner.close();
+    }
+
+    private static int[] readArray(Scanner scanner) {
+        String line = scanner.nextLine();
+        if (line.trim().isEmpty()) {
+            return new int[0]; // 빈 배열 반환
+        }
+        String[] parts = line.split(" ");
+        int[] array = new int[parts.length];
+        for (int i = 0; i < parts.length; i++) {
+            array[i] = Integer.parseInt(parts[i]);
+        }
+        return array;
     }
 }
