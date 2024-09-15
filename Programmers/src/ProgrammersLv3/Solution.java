@@ -1,3 +1,4 @@
+//프로그래머스 금과은 운반하기
 package ProgrammersLv3;
 
 import java.util.Scanner;
