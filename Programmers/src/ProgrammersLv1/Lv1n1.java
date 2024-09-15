@@ -1,6 +1,7 @@
+package ProgrammersLv1;
 
 
-public class Solution1 {
+public class Lv1n1 {
        public int solution(int[] number) {
             int answer = 0;
             for (int i = 0; i < number.length; i++) {

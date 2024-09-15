@@ -3,7 +3,7 @@ package ProgrammersLv3;
 
 import java.util.Scanner;
 
-public class Solution {
+public class Lv3n1 {
     public long solution(int a, int b, int[] g, int[] s, int[] w, int[] t) {
         long start = 0; // 최솟값
         long end = (long) (10e9 * 2 * 10e5 * 2);
@@ -64,7 +64,7 @@ public class Solution {
         int[] t = readArray(scanner);
         
         // Solution 객체 생성 및 결과 계산
-        Solution solution = new Solution();
+        Lv3n1 solution = new Lv3n1();
         long result = solution.solution(a, b, g, s, w, t);
         
         // 결과 출력
