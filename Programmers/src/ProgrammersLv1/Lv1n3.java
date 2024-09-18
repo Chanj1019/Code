@@ -9,7 +9,5 @@ public class Lv1n3 {
             answer += num;
         }
         return answer/numbers.length;
-    }
-} {
-    
+    }    
 }
