@@ -1,4 +1,3 @@
-package ProgrammersLv1;
 
 //평균 구하기
 public class Lv1n3 {

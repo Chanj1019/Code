@@ -1,4 +1,3 @@
-package ProgrammersLv1;
 
 
 public class Lv1n1 {

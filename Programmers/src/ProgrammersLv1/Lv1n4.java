@@ -1,4 +1,3 @@
-package ProgrammersLv1;
 
 class Lv1n4 {
     public int solution(String[] babbling) {
