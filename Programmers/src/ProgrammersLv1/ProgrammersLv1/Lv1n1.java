@@ -1,4 +1,4 @@
-
+package ProgrammersLv1;
 
 public class Lv1n1 {
        public int solution(int[] number) {

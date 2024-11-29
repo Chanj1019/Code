@@ -1,3 +1,4 @@
+package ProgrammersLv1;
 
 import java.util.Scanner;
 //짝수의 합
