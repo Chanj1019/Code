@@ -1,4 +1,5 @@
 
+
 class Lv1n4 {
     public int solution(String[] babbling) {
         int result = 0; 

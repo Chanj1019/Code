@@ -1,3 +1,4 @@
+package ProgrammersLv1;
 
 public class Lv1n6 {
     public int solution(int n) {
